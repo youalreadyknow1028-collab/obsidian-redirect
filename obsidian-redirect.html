@@ -1,0 +1,20 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Opening in Obsidian…</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  // One-tap bounce: an https link (clickable everywhere, incl. Google Calendar)
+  // forwards to obsidian:// (which Google Calendar refuses to linkify directly).
+  // Query: ?v=<vault name>&f=<vault-relative path, .md optional>
+  (function () {
+    var p = new URLSearchParams(location.search);
+    var v = p.get('v') || 'caduceus systems';
+    var f = (p.get('f') || '').replace(/\.md$/, '');
+    var url = 'obsidian://open?vault=' + encodeURIComponent(v) + '&file=' + encodeURIComponent(f);
+    var a = document.getElementById('lnk'); if (a) a.href = url;
+    location.replace(url);           // auto-redirect (top-level, works on a real static host)
+  })();
+</script>
+<p style="font-family:system-ui;margin:2rem;font-size:1.1rem">
+  Opening in Obsidian… <a id="lnk" href="#">tap here</a> if nothing happens.
+</p>
